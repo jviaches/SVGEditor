@@ -6,19 +6,24 @@ import { AppComponent } from './app.component';
 import { ViewAllItemsComponent } from './gallery/view-all-items/view-all-items.component';
 import { ViewItemComponent } from './gallery/view-item/view-item.component';
 import { EditItemComponent } from './gallery/edit-item/edit-item.component';
+import { DragDirective } from './core/directives/drag.directive';
+import { SvgService } from './core/services/svg.service';
+import { DropDirective } from './core/directives/drop.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     ViewAllItemsComponent,
     ViewItemComponent,
-    EditItemComponent
+    EditItemComponent,
+    DragDirective,
+    DropDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [SvgService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

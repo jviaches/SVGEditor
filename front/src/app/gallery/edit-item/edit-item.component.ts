@@ -1,7 +1,8 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { RectItem } from 'src/app/core/models/rectangle.item.model';
 import { CircleItem } from 'src/app/core/models/circle.item.model';
 import { SVGItem } from 'src/app/core/models/svg.item';
+import { SvgService } from 'src/app/core/services/svg.service';
 
 @Component({
   selector: 'app-edit-item',
@@ -12,7 +13,7 @@ export class EditItemComponent implements OnInit, AfterViewInit {
 
   allItems: SVGItem[] = [];
 
-  // constructor() { }
+  constructor(public svgService: SvgService) { }
 
   ngOnInit(): void {
     this.createTestImages();
@@ -31,6 +32,7 @@ export class EditItemComponent implements OnInit, AfterViewInit {
     (rectItem as RectItem).fill = 'green';
 
     const rect = document.createElement('rect');
+    rect.setAttribute('id', (rectItem as RectItem).id);
     rect.setAttribute('x', (rectItem as RectItem).x);
     rect.setAttribute('y', (rectItem as RectItem).y);
     rect.setAttribute('width', (rectItem as RectItem).width);
@@ -47,20 +49,13 @@ export class EditItemComponent implements OnInit, AfterViewInit {
     (circleItem as CircleItem).fill = 'yellow';
 
     const circle = document.createElement('circle');
+    circle.setAttribute('id', (circleItem as CircleItem).id);
     circle.setAttribute('cx', (circleItem as CircleItem).cx);
     circle.setAttribute('cy', (circleItem as CircleItem).cy);
     circle.setAttribute('cy', (circleItem as CircleItem).r);
     circle.setAttribute('fill', (circleItem as CircleItem).fill);
 
     this.allItems.push(circleItem);
-    console.log('allItems: ' + JSON.stringify(this.allItems));
-  }
-
-  isRectangle(item: SVGItem) {
-    return item instanceof RectItem;
-  }
-
-  isCircle(item: SVGItem) {
-    return item instanceof CircleItem;
+    // console.log('allItems: ' + JSON.stringify(this.allItems));
   }
 }
