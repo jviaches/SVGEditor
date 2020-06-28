@@ -5,11 +5,11 @@
         <div class="row">
             <div class="row_item">
                 <label>Width</label>
-                <input class="sidebar_input" type="number" value="1440" />
+                <input class="sidebar_input" type="number" (input)="svgWidth = $event.target.value"  [value]="svgWidth" />
             </div>
             <div class="row_item">
                 <label>HEIGHT</label>
-                <input class="sidebar_input" type="number" value="900" />
+                <input class="sidebar_input" type="number" (input)="svgHeight = $event.target.value"  [value]="svgHeight" />
             </div>
         </div>
         <!-- Tool Tools-->
@@ -34,13 +34,13 @@
         <p class="sidebar-capture">Download Options</p>
         <div class="row">
             <div class="row_item">
-                <button (click)="saveAsPng()">Save as PNG</button>
+                <button (click)="saveAsPng()">Save as SVG</button>
             </div>
         </div>
 
     </div>
     <div class="two" appDrop>
-        <svg #svg_container viewBox="0 0 1440 900">
+        <svg #svg_container attr.height="{{svgHeight}}px" attr.width="{{svgWidth}}px" >
             <g #mainArea>
                 <ng-container *ngFor="let item of svgService.editedIems">
                     <g *ngIf="svgService.isRectangle(item)">

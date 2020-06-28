@@ -69,3 +69,7 @@ svg rect:hover {
 svg circle:hover {
   @extend .hover;
 }
+
+svg {
+  background-color: brown;
+}
