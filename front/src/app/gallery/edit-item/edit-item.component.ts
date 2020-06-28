@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { SVGItem } from 'src/app/core/models/svg.item';
 import { SvgService } from 'src/app/core/services/svg.service';
 
@@ -27,5 +27,13 @@ export class EditItemComponent implements AfterViewInit {
   saveAsPng() {
     console.log(this.svgContainer.nativeElement);
     this.svgService.convertImagetoSVG(this.svgContainer.nativeElement);
+  }
+
+  @HostListener('document:keyup', ['$event'])
+  handleDeleteKeyboardEvent(event: KeyboardEvent) {
+    if (event.key === 'Delete' && this.selectedItem) {
+      const itemIndex = this.svgService.editedIems.indexOf(this.selectedItem);
+      this.svgService.editedIems.splice(itemIndex, 1);
+    }
   }
 }
