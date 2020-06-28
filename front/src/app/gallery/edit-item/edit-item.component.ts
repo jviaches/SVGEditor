@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { SVGItem } from 'src/app/core/models/svg.item';
 import { SvgService } from 'src/app/core/services/svg.service';
 
@@ -10,6 +10,7 @@ import { SvgService } from 'src/app/core/services/svg.service';
 export class EditItemComponent implements AfterViewInit {
 
   selectedItem: SVGItem;
+  @ViewChild('svg_container', { static: false }) svgContainer: any;
 
   constructor(public svgService: SvgService) { }
 
@@ -19,5 +20,10 @@ export class EditItemComponent implements AfterViewInit {
 
   shapeSelection(item: SVGItem) {
     this.selectedItem = item;
+  }
+
+  saveAsPng() {
+    console.log(this.svgContainer.nativeElement);
+    this.svgService.convertImagetoSVG(this.svgContainer.nativeElement);
   }
 }
