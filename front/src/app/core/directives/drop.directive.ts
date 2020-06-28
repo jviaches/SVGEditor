@@ -1,5 +1,6 @@
 import { Directive, HostListener } from '@angular/core';
 import { SvgService } from '../services/svg.service';
+import { SVGItem } from '../models/svg.item';
 
 @Directive({
   selector: '[appDrop]'
@@ -50,13 +51,25 @@ export class DropDirective {
   }
 
   private setPosition(element: SVGElement, coord: { x, y }) {
+    const shape: SVGItem = this.svgService.editedIems.find(item => item.id === element.id);
+
     if (element instanceof SVGRectElement) {
       element.setAttribute('x', coord.x);
       element.setAttribute('y', coord.y);
+
+      if (shape) {
+        shape.attributes[0].value = coord.x;
+        shape.attributes[1].value = coord.y;
+      }
     }
     else if (element instanceof SVGCircleElement) {
       element.setAttribute('cx', coord.x);
       element.setAttribute('cy', coord.y);
+
+      if (shape) {
+        shape.attributes[0].value = coord.x;
+        shape.attributes[1].value = coord.y;
+      }
     }
   }
 }

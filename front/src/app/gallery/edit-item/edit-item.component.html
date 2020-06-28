@@ -21,22 +21,29 @@
 
         <!-- Tool Properties-->
         <p class="sidebar-capture">Properties</p>
-        <div class="row">
-            <div class="row_item"></div>
-            <div class="row_item"></div>
+        <div *ngIf="selectedItem">
+            <div class="row" *ngFor="let attr of selectedItem.attributes">
+                <div class="row_item">
+                    <span>{{attr.key}}</span>
+                    <input [value]="attr.value" (input)="attr.value = $event.target.value" />
+                </div>
+            </div>
         </div>
     </div>
     <div class="two" appDrop>
         <svg viewBox="0 0 1440 900">
             <g #mainArea>
-                <ng-container *ngFor="let item of allItems">
-                    <g *ngIf="svgService.isRectangle(item)" >
-                        <rect appDrag [attr.x]="item.x" [attr.y]="item.y" [attr.width]="item.width" [attr.height]="item.height" 
-                            [attr.fill]="item.fill" />
+                <ng-container *ngFor="let item of svgService.editedIems">
+                    <g *ngIf="svgService.isRectangle(item)">
+                        <rect appDrag [attr.id]="item.id" [attr.x]="item.attributes[0].value"
+                            [attr.y]="item.attributes[1].value" [attr.width]="item.attributes[2].value"
+                            [attr.height]="item.attributes[3].value" [attr.fill]="item.attributes[4].value"
+                            (click)="shapeSelection(item)" />
                     </g>
                     <g *ngIf="svgService.isCircle(item)">
-                        <circle appDrag id="circle-yellow" [attr.cx]="item.cx" [attr.cy]="item.cy" [attr.r]="item.r" 
-                            [attr.fill]="item.fill" />
+                        <circle appDrag [attr.id]="item.id" [attr.cx]="item.attributes[0].value"
+                            [attr.cy]="item.attributes[1].value" [attr.r]="item.attributes[2].value"
+                            [attr.fill]="item.attributes[3].value" (click)="shapeSelection(item)" />
                     </g>
                 </ng-container>
             </g>
