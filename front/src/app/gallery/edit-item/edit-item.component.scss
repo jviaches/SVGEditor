@@ -1,101 +1,71 @@
 .container {
-    width: 99vw;
-    height: 98vh;
-    margin: auto;
-  }
-  
-  .one {
-    width: 15%;
-    height: 98vh;
-    float: left;
-  }
-  
-  .two {
-    margin-left: 20%;
-    height: 98vh;
-    background: grey;
-  }
-  
-  button,
-  label {
-    display: block;
-  }
-  
-  label {
-    font-weight: 400;
-    font-size: 11px;
-    text-transform: uppercase;
-    color: #666;
-    margin: 10px;
-  }
-  
-  input {
-    outline: none;
-    display: block;
-    // width: 100%;
-    margin: 0 0 15px;
-    font-size: 1rem;
-    padding: 10px 15px;
-    border: 1px solid #e6e6e6;
-    border-radius: 20px;
-    color: inherit;
-  }
-  
-  .sidebar_input {
-    width: 100px;
-  }
-  
-  .row {
-    display: flex;
-  }
-  
-  .row_item {
-    margin: 0 16px;
-  }
-  
-  .sidebar-capture {
-    @extend label;
-    font-size: 18px;
-  }
-  
-  .sidebar-tool-btn {
-    display: inline-block;
-    vertical-align: middle;
-    height: 35px;
-    font-size: 13px;
-    text-transform: uppercase;
-    margin-top: -3px;
-    padding: 0 15px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    background: #fff;
-    border-radius: 30px;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
-    transform: scale(1.0001);
-    margin: 0;
-      padding: 0;
-      outline: none;
-      border: none;
-      cursor: pointer;
-      font-size: inherit;
-      background: none;
-      color: #47cee4;
-  }
-  
-  svg rect:hover {
-    //   fill:red;
-    //   color:red;
-    stroke: pink;
-    stroke-width: 5;
-    stroke-opacity: 0.5;
-  }
-  
-  svg text:hover {
-    //   fill:red;
-    //   color:red;
-    opacity: 0.5;
-  
-    stroke: pink;
-    stroke-width: 5;
-    stroke-opacity: 0.5;
-  }
-  
+  width: 99vw;
+  height: 98vh;
+  margin: auto;
+}
+
+.one {
+  width: 15%;
+  height: 98vh;
+  float: left;
+}
+
+.two {
+  margin-left: 20%;
+  height: 98vh;
+  background: grey;
+}
+
+.sidebar_input {
+  width: 100px;
+}
+
+.row {
+  display: flex;
+}
+
+.row_item {
+  margin: 0 16px;
+}
+
+.sidebar-capture {
+  //     @extend label;
+  font-size: 18px;
+}
+
+.sidebar-tool-btn {
+  display: inline-block;
+  vertical-align: middle;
+  height: 35px;
+  font-size: 13px;
+  text-transform: uppercase;
+  margin-top: -3px;
+  padding: 0 15px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: #fff;
+  border-radius: 30px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+  transform: scale(1.0001);
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-size: inherit;
+  background: none;
+  color: #47cee4;
+}
+
+.hover {
+  stroke: pink;
+  stroke-width: 5;
+  stroke-opacity: 0.5;
+}
+
+svg rect:hover {
+  @extend .hover;
+}
+
+svg circle:hover {
+  @extend .hover;
+}

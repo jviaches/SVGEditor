@@ -8,7 +8,7 @@ export class DropDirective {
 
   private draggingElement: any;
 
-  constructor(private svgService: SvgService) {}
+  constructor(private svgService: SvgService) { }
 
   @HostListener('drop', ['$event'])
   onDrop(event) {
@@ -21,14 +21,14 @@ export class DropDirective {
     droppedElement.setAttribute('draggable', true);
 
     const svgPoint = this.svgService.getSVGPoint(event, droppedElement);
-    this.setPosition(droppedElement, { x: svgPoint.x, y: svgPoint.y  });
+    this.setPosition(droppedElement, { x: svgPoint.x, y: svgPoint.y });
   }
 
   @HostListener('mousemove', ['$event'])
   onMouseMove(event): void {
     if (this.draggingElement) {
       const svgPoint = this.svgService.getSVGPoint(event, this.draggingElement);
-      this.setPosition(this.draggingElement, { x: svgPoint.x, y: svgPoint.y  });
+      this.setPosition(this.draggingElement, { x: svgPoint.x, y: svgPoint.y });
     }
   }
 
