@@ -9,6 +9,8 @@ import { EditItemComponent } from './gallery/edit-item/edit-item.component';
 import { DragDirective } from './core/directives/drag.directive';
 import { SvgService } from './core/services/svg.service';
 import { DropDirective } from './core/directives/drop.directive';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { DropDirective } from './core/directives/drop.directive';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [SvgService],
   bootstrap: [AppComponent]

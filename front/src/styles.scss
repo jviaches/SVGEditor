@@ -1,25 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-button,
-label {
-  display: block;
-}
 
-label {
-  font-weight: 400;
-  font-size: 11px;
-  text-transform: uppercase;
-  color: #666;
-  margin: 10px;
-}
-
-input {
-  outline: none;
-  display: block;
-  // width: 100%;
-  margin: 0 0 15px;
-  font-size: 1rem;
-  padding: 10px 15px;
-  border: 1px solid #e6e6e6;
-  border-radius: 20px;
-  color: inherit;
-}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
