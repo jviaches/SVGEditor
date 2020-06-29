@@ -37,6 +37,7 @@ export class EditItemComponent implements AfterViewInit {
       this.generalService.showYesNoModalMessage().subscribe(data => {
         if (data === 'yes') {
           this.svgService.deleteItem(this.selectedItem);
+          this.selectedItem = null;
         }
       });
     }
