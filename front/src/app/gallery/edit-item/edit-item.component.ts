@@ -13,6 +13,7 @@ export class EditItemComponent implements AfterViewInit {
   selectedItem: SVGItem;
   svgWidth = '1440';
   svgHeight = '900';
+  svgBackgroundColor = '#FF6138';
   @ViewChild('svg_container', { static: false }) svgContainer: any;
 
   constructor(public svgService: SvgService, private generalService: GeneralService) { }
