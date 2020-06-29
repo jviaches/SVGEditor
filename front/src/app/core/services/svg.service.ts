@@ -81,4 +81,9 @@ export class SvgService {
     downloadLink.click();
     document.body.removeChild(downloadLink);
   }
+
+  deleteItem(selectedItem: SVGItem) {
+        const itemIndex = this.editedIems.indexOf(selectedItem);
+        this.editedIems.splice(itemIndex, 1);
+  }
 }

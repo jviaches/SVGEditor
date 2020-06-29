@@ -11,6 +11,9 @@ import { SvgService } from './core/services/svg.service';
 import { DropDirective } from './core/directives/drop.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
+import { GeneralService } from './core/services/general.service';
+import { ModalDialogComponent } from './core/components/modal-dialog/modal-dialog.component';
+import { ModalYesNoDialogComponent } from './core/components/yesno-modal-dialog/yesno-modal-dialog.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,9 @@ import { MaterialModule } from './material.module';
     ViewItemComponent,
     EditItemComponent,
     DragDirective,
-    DropDirective
+    DropDirective,
+    ModalDialogComponent,
+    ModalYesNoDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +32,8 @@ import { MaterialModule } from './material.module';
     BrowserAnimationsModule,
     MaterialModule
   ],
-  providers: [SvgService],
-  bootstrap: [AppComponent]
+  providers: [SvgService, GeneralService],
+  bootstrap: [AppComponent],
+  entryComponents: [ModalDialogComponent, ModalYesNoDialogComponent]
 })
 export class AppModule { }

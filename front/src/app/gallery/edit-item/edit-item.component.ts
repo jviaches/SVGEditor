@@ -1,6 +1,7 @@
 import { Component, AfterViewInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { SVGItem } from 'src/app/core/models/svg.item';
 import { SvgService } from 'src/app/core/services/svg.service';
+import { GeneralService } from 'src/app/core/services/general.service';
 
 @Component({
   selector: 'app-edit-item',
@@ -14,7 +15,7 @@ export class EditItemComponent implements AfterViewInit {
   svgHeight = '900';
   @ViewChild('svg_container', { static: false }) svgContainer: any;
 
-  constructor(public svgService: SvgService) { }
+  constructor(public svgService: SvgService, private generalService: GeneralService) { }
 
   ngAfterViewInit(): void {
     this.svgService.createTestImages();
@@ -32,8 +33,11 @@ export class EditItemComponent implements AfterViewInit {
   @HostListener('document:keyup', ['$event'])
   handleDeleteKeyboardEvent(event: KeyboardEvent) {
     if (event.key === 'Delete' && this.selectedItem) {
-      const itemIndex = this.svgService.editedIems.indexOf(this.selectedItem);
-      this.svgService.editedIems.splice(itemIndex, 1);
+      this.generalService.showYesNoModalMessage().subscribe(data => {
+        if (data === 'yes') {
+          this.svgService.deleteItem(this.selectedItem);
+        }
+      });
     }
   }
 }
