@@ -31,7 +31,7 @@
                         <mat-label>Background</mat-label>
                         <input matInput (input)="svgBackgroundColor = $event.target.value" [value]="svgBackgroundColor">
                     </mat-form-field>
-                </div>                
+                </div>
             </mat-expansion-panel>
         </mat-accordion>
         <br />
@@ -43,7 +43,20 @@
                         Tools
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <p>This is the primary content of the panel.</p>
+                <div class="row_item">
+                    <button mat-mini-fab color="accent" matTooltip="Rectangle" class="button-icons">
+                        <span class="material-icons">crop_square</span>
+                    </button>
+                    <button mat-mini-fab color="accent" matTooltip="Circle" class="button-icons">
+                        <span class="material-icons">panorama_fish_eye</span>
+                    </button>
+                    <button mat-mini-fab color="accent" matTooltip="Path" class="button-icons">
+                        <span class="material-icons">horizontal_rule</span>
+                    </button>
+                    <button mat-mini-fab color="accent" matTooltip="Text" class="button-icons">
+                        <span class="material-icons">text_fields</span>
+                    </button>
+                </div>
             </mat-expansion-panel>
         </mat-accordion>
 
@@ -82,7 +95,8 @@
     </mat-drawer>
     <mat-drawer-content>
         <div class="two" appDrop>
-            <svg #svg_container attr.height="{{svgHeight}}px" attr.width="{{svgWidth}}px" style.background-color="{{svgBackgroundColor}}">
+            <svg #svg_container attr.height="{{svgHeight}}px" attr.width="{{svgWidth}}px"
+                style.background-color="{{svgBackgroundColor}}">
                 <g #mainArea>
                     <ng-container *ngFor="let item of svgService.editedIems">
                         <g *ngIf="svgService.isRectangle(item)">
