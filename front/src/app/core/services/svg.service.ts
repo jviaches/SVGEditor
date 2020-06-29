@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { SVGItem } from '../models/svg.item';
 import { RectItem } from '../models/rectangle.item.model';
 import { CircleItem } from '../models/circle.item.model';
+import { PathItem } from '../models/path.item.model';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,11 @@ export class SvgService {
   isRectangle(item: SVGItem) {
     return item instanceof RectItem;
   }
+
+  isPath(item: SVGItem) {
+    return item instanceof PathItem;
+  }
+
 
   isCircle(item: SVGItem) {
     return item instanceof CircleItem;
@@ -67,6 +73,16 @@ export class SvgService {
     circle.setAttribute('fill', circleItem.attributes[3].value);
 
     this.editedIems.push(circleItem);
+
+    const pathItem = new PathItem();
+    pathItem.id = '3';
+    pathItem.attributes[0].value = 'M150 0 L75 200 L225 200 Z'; // cx
+
+    const path = document.createElement('path');
+    path.setAttribute('id', pathItem.id);
+    path.setAttribute('d', pathItem.attributes[0].value);
+
+    this.editedIems.push(pathItem);
   }
 
   convertImagetoSVG(svg: any) {

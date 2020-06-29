@@ -110,6 +110,9 @@
                                 [attr.cy]="item.attributes[1].value" [attr.r]="item.attributes[2].value"
                                 [attr.fill]="item.attributes[3].value" (click)="shapeSelection(item)" />
                         </g>
+                        <g *ngIf="svgService.isPath(item)">
+                            <path [attr.d]="item.attributes[0].value" (click)="shapeSelection(item)" />
+                        </g>                        
                     </ng-container>
                 </g>
             </svg>
