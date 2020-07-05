@@ -68,6 +68,9 @@
                         Properties
                     </mat-panel-title>
                 </mat-expansion-panel-header>
+                <div *ngIf="!selectedItem">
+                    <span class="label-stab">Click on shape to inspect properties</span>
+                </div>
                 <div *ngIf="selectedItem">
                     <mat-form-field class="half-width-field" *ngFor="let attr of selectedItem.attributes">
                         <mat-label>{{attr.key}}</mat-label>
