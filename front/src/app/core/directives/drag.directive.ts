@@ -56,14 +56,13 @@ export class DragDirective {
     }
   }
 
-  @HostListener('mouseup', ['$event'])
-  onMouseUp(event): void {
+  @HostListener('mouseup')
+  onMouseUp(): void {
     this.draggingElement = null;
-    this.addSelection(event);
   }
 
-  @HostListener('mouseleave', ['$event'])
-  onMouseLeave(event): void {
+  @HostListener('mouseleave')
+  onMouseLeave(): void {
     this.draggingElement = null;
     this.removeSelection();
   }
