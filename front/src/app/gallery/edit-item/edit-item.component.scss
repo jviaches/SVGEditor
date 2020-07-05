@@ -1,7 +1,13 @@
-.hover {
+.bound_area {
   stroke: pink;
   stroke-width: 5;
   stroke-opacity: 0.5;
+}
+
+.hover {
+  // stroke: pink;
+  // stroke-width: 5;
+  // stroke-opacity: 0.5;
 }
 
 svg rect:hover {

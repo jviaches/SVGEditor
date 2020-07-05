@@ -8,12 +8,12 @@ import { ViewItemComponent } from './gallery/view-item/view-item.component';
 import { EditItemComponent } from './gallery/edit-item/edit-item.component';
 import { DragDirective } from './core/directives/drag.directive';
 import { SvgService } from './core/services/svg.service';
-import { DropDirective } from './core/directives/drop.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { GeneralService } from './core/services/general.service';
 import { ModalDialogComponent } from './core/components/modal-dialog/modal-dialog.component';
 import { ModalYesNoDialogComponent } from './core/components/yesno-modal-dialog/yesno-modal-dialog.component';
+import { ResizeDirective } from './core/directives/resize.directive';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import { ModalYesNoDialogComponent } from './core/components/yesno-modal-dialog/
     ViewItemComponent,
     EditItemComponent,
     DragDirective,
-    DropDirective,
+    ResizeDirective,
     ModalDialogComponent,
     ModalYesNoDialogComponent
   ],

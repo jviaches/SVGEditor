@@ -27,7 +27,6 @@ export class EditItemComponent implements AfterViewInit {
   }
 
   saveAsPng() {
-    console.log(this.svgContainer.nativeElement);
     this.svgService.convertImagetoSVG(this.svgContainer.nativeElement);
   }
 

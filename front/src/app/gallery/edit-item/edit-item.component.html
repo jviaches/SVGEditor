@@ -94,8 +94,8 @@
         </mat-accordion>
     </mat-drawer>
     <mat-drawer-content>
-        <div class="main-container" appDrop>
-            <svg #svg_container attr.height="{{svgHeight}}px" attr.width="{{svgWidth}}px"
+        <div class="main-container">
+            <svg id="svg_container" #svg_container attr.height="{{svgHeight}}px" attr.width="{{svgWidth}}px"
                 style.background-color="{{svgBackgroundColor}}">
                 <g #mainArea>
                     <ng-container *ngFor="let item of svgService.editedIems">
@@ -111,7 +111,7 @@
                                 [attr.fill]="item.attributes[3].value" (click)="shapeSelection(item)" />
                         </g>
                         <g *ngIf="svgService.isPath(item)">
-                            <path [attr.d]="item.attributes[0].value" (click)="shapeSelection(item)" />
+                            <path appDrag [attr.d]="item.attributes[0].value" (click)="shapeSelection(item)" />
                         </g>                        
                     </ng-container>
                 </g>
