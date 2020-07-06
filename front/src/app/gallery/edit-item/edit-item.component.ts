@@ -29,8 +29,11 @@ export class EditItemComponent implements AfterViewInit {
   }
 
   svgContainerSelection(event: MouseEvent) {
-    if (this.shapeToolbar.selectedTool) {
+    if (this.shapeToolbar.selectedTool === 'rectangle') { // TODO: change to enum ??
       this.svgService.createRectangle(event.offsetX, event.offsetY);
+      this.shapeToolbar.resetSelection();
+    } else if (this.shapeToolbar.selectedTool === 'circle') {
+      this.svgService.createCircle(event.offsetX, event.offsetY);
       this.shapeToolbar.resetSelection();
     }
   }

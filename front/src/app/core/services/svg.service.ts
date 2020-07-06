@@ -74,6 +74,22 @@ export class SvgService {
     this.editedIems.push(rectItem);
   }
 
+  createCircle(x: number, y: number) {
+    const radius = 25;
+    const xCoord = x - (radius / 2);
+    const yCoord = y - (radius / 2);
+
+    const circleItem = new CircleItem();
+    circleItem.id = this.generatedId().toString();
+    circleItem.attributes[0].value = xCoord.toString(); // cx
+    circleItem.attributes[1].value = yCoord.toString(); // cy
+    circleItem.attributes[2].value = radius.toString(); // r
+    circleItem.attributes[3].value = 'yellow'; // fill
+
+    this.editedIems.push(circleItem);
+
+  }
+
   convertImagetoSVG(svg: any) {
     svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
     const preface = '<?xml version="1.0" standalone="no"?>\r\n';

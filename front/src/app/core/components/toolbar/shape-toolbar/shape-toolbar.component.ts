@@ -12,6 +12,7 @@ export class ShapeToolbarComponent implements AfterViewInit {
   @Output() selectionChange = new EventEmitter();
 
   @ViewChild('rectangleTool', { static: false }) rectangleTool: MatButton;
+  @ViewChild('circleTool', { static: false }) circleTool: MatButton;
 
   ngAfterViewInit(): void {
   }
@@ -27,9 +28,21 @@ export class ShapeToolbarComponent implements AfterViewInit {
     this.selectionChange.emit('rectangle');
   }
 
+  circleSelected() {
+    if (this.selectedTool === 'circle') {
+      this.resetSelection();
+      return;
+    }
+
+    this.selectedTool = 'circle';
+    this.circleTool.color = 'primary';
+    this.selectionChange.emit('circle');
+  }
+
   resetSelection() {
     this.selectedTool = null;
     this.rectangleTool.color = undefined;
+    this.circleTool.color = undefined;
     this.selectionChange.emit(undefined);
   }
 }
