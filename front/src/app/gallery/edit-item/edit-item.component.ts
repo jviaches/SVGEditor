@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, HostListener } from '@angular/core';
 import { SVGItem } from 'src/app/core/models/svg.item';
 import { SvgService } from 'src/app/core/services/svg.service';
 import { GeneralService } from 'src/app/core/services/general.service';

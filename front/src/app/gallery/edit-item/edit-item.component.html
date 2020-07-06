@@ -43,23 +43,9 @@
                         Tools
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <div class="row_item">
-                    <button mat-mini-fab color="accent" matTooltip="Rectangle" class="button-icons">
-                        <span class="material-icons">crop_square</span>
-                    </button>
-                    <button mat-mini-fab color="accent" matTooltip="Circle" class="button-icons">
-                        <span class="material-icons">panorama_fish_eye</span>
-                    </button>
-                    <button mat-mini-fab color="accent" matTooltip="Path" class="button-icons">
-                        <span class="material-icons">horizontal_rule</span>
-                    </button>
-                    <button mat-mini-fab color="accent" matTooltip="Text" class="button-icons">
-                        <span class="material-icons">text_fields</span>
-                    </button>
-                </div>
+                <app-shape-toolbar></app-shape-toolbar>
             </mat-expansion-panel>
         </mat-accordion>
-
         <br />
         <mat-accordion>
             <mat-expansion-panel class="expansion-tab">
@@ -115,7 +101,7 @@
                         </g>
                         <g *ngIf="svgService.isPath(item)">
                             <path appDrag [attr.d]="item.attributes[0].value" (click)="shapeSelection(item)" />
-                        </g>                        
+                        </g>
                     </ng-container>
                 </g>
             </svg>

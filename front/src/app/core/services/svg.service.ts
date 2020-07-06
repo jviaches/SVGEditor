@@ -46,11 +46,11 @@ export class SvgService {
 
     this.editedIems.push(circleItem);
 
-    const pathItem = new PathItem();
-    pathItem.id = '3';
-    pathItem.attributes[0].value = 'M150 0 L75 200 L225 200 Z'; // cx
+    // const pathItem = new PathItem();
+    // pathItem.id = '3';
+    // pathItem.attributes[0].value = 'M150 0 L75 200 L225 200 Z'; // cx
 
-    this.editedIems.push(pathItem);
+    // this.editedIems.push(pathItem);
   }
 
   convertImagetoSVG(svg: any) {

@@ -11,9 +11,10 @@ import { SvgService } from './core/services/svg.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { GeneralService } from './core/services/general.service';
-import { ModalDialogComponent } from './core/components/modal-dialog/modal-dialog.component';
-import { ModalYesNoDialogComponent } from './core/components/yesno-modal-dialog/yesno-modal-dialog.component';
+import { ModalDialogComponent } from './core/components/modal/modal-dialog/modal-dialog.component';
+import { ModalYesNoDialogComponent } from './core/components/modal/yesno-modal-dialog/yesno-modal-dialog.component';
 import { ResizeDirective } from './core/directives/resize.directive';
+import { ShapeToolbarComponent } from './core/components/toolbar/shape-toolbar/shape-toolbar.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ResizeDirective } from './core/directives/resize.directive';
     EditItemComponent,
     DragDirective,
     ResizeDirective,
+    ShapeToolbarComponent,
     ModalDialogComponent,
     ModalYesNoDialogComponent
   ],

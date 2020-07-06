@@ -1,9 +1,8 @@
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ModalDialogComponent } from '../components/modal-dialog/modal-dialog.component';
-import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
-import { ModalYesNoDialogComponent } from '../components/yesno-modal-dialog/yesno-modal-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ModalYesNoDialogComponent } from '../components/modal/yesno-modal-dialog/yesno-modal-dialog.component';
 import { Router } from '@angular/router';
 
 @Injectable({
