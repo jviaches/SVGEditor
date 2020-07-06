@@ -31,6 +31,7 @@ export class EditItemComponent implements AfterViewInit {
   svgContainerSelection(event: MouseEvent) {
     if (this.shapeToolbar.selectedTool) {
       this.svgService.createRectangle(event.offsetX, event.offsetY);
+      this.shapeToolbar.resetSelection();
     }
   }
   shapeSelection(item: SVGItem) {

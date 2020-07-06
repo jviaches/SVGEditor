@@ -18,14 +18,18 @@ export class ShapeToolbarComponent implements AfterViewInit {
 
   rectangleSelected() {
     if (this.selectedTool === 'rectangle') {
-      this.selectedTool = null;
-      this.rectangleTool.color = undefined;
-      this.selectionChange.emit(undefined);
+      this.resetSelection();
       return;
     }
 
     this.selectedTool = 'rectangle';
     this.rectangleTool.color = 'primary';
     this.selectionChange.emit('rectangle');
+  }
+
+  resetSelection() {
+    this.selectedTool = null;
+    this.rectangleTool.color = undefined;
+    this.selectionChange.emit(undefined);
   }
 }
