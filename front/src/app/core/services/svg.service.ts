@@ -53,6 +53,22 @@ export class SvgService {
     // this.editedIems.push(pathItem);
   }
 
+  createRectangle(x: number, y: number) {
+    const size = 100;
+    const xCoord = x - (size / 2);
+    const yCoord = y - (size / 2);
+
+    const rectItem = new RectItem();
+    rectItem.id = '100';
+    rectItem.attributes[0].value = xCoord.toString();  // x
+    rectItem.attributes[1].value = yCoord.toString();  // y
+    rectItem.attributes[2].value = '100'; // width
+    rectItem.attributes[3].value = '100'; // height
+    rectItem.attributes[4].value = 'blue'; // fill
+
+    this.editedIems.push(rectItem);
+  }
+
   convertImagetoSVG(svg: any) {
     svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
     const preface = '<?xml version="1.0" standalone="no"?>\r\n';

@@ -85,7 +85,7 @@
     <mat-drawer-content>
         <div class="main-container">
             <svg id="svg_container" #svg_container attr.height="{{svgHeight}}px" attr.width="{{svgWidth}}px"
-                style.background-color="{{svgBackgroundColor}}">
+                style.background-color="{{svgBackgroundColor}}" (click)="svgContainerSelection($event)">
                 <g #mainArea>
                     <ng-container *ngFor="let item of svgService.editedIems">
                         <g *ngIf="svgService.isRectangle(item)">

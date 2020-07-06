@@ -2,6 +2,7 @@ import { Component, AfterViewInit, ViewChild, HostListener } from '@angular/core
 import { SVGItem } from 'src/app/core/models/svg.item';
 import { SvgService } from 'src/app/core/services/svg.service';
 import { GeneralService } from 'src/app/core/services/general.service';
+import { ShapeToolbarComponent } from 'src/app/core/components/toolbar/shape-toolbar/shape-toolbar.component';
 
 @Component({
   selector: 'app-edit-item',
@@ -15,13 +16,23 @@ export class EditItemComponent implements AfterViewInit {
   svgHeight = '900';
   svgBackgroundColor = '#FF6138';
   @ViewChild('svg_container', { static: false }) svgContainer: any;
+  @ViewChild(ShapeToolbarComponent, { static: false }) shapeToolbar: ShapeToolbarComponent;
 
   constructor(public svgService: SvgService, private generalService: GeneralService) { }
 
   ngAfterViewInit(): void {
+    this.shapeToolbar.selectionChange.subscribe(data => {
+      console.log(data);
+    });
+
     this.svgService.createTestImages();
   }
 
+  svgContainerSelection(event: MouseEvent) {
+    if (this.shapeToolbar.selectedTool) {
+      this.svgService.createRectangle(event.offsetX, event.offsetY);
+    }
+  }
   shapeSelection(item: SVGItem) {
     this.selectedItem = item;
   }
