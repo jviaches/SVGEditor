@@ -10,6 +10,7 @@ import { PathItem } from '../models/path.item.model';
 export class SvgService {
 
   editedIems: SVGItem[] = [];
+  private lastGeneratedElementId = 0;
 
   constructor() {
   }
@@ -26,9 +27,13 @@ export class SvgService {
     return item instanceof CircleItem;
   }
 
+  generatedId(){
+    return ++this.lastGeneratedElementId;
+  }
+
   createTestImages() {
     const rectItem = new RectItem();
-    rectItem.id = '1';
+    rectItem.id = this.generatedId().toString();
     rectItem.attributes[0].value = '10';  // x
     rectItem.attributes[1].value = '20';  // y
     rectItem.attributes[2].value = '500'; // width
@@ -38,7 +43,7 @@ export class SvgService {
     this.editedIems.push(rectItem);
 
     const circleItem = new CircleItem();
-    circleItem.id = '2';
+    circleItem.id = this.generatedId().toString();
     circleItem.attributes[0].value = '200'; // cx
     circleItem.attributes[1].value = '400'; // cy
     circleItem.attributes[2].value = '25'; // r
@@ -59,7 +64,7 @@ export class SvgService {
     const yCoord = y - (size / 2);
 
     const rectItem = new RectItem();
-    rectItem.id = '100';
+    rectItem.id = this.generatedId().toString();
     rectItem.attributes[0].value = xCoord.toString();  // x
     rectItem.attributes[1].value = yCoord.toString();  // y
     rectItem.attributes[2].value = '100'; // width
