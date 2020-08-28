@@ -69,7 +69,7 @@ export class SvgService {
     rectItem.attributes[1].value = yCoord.toString();  // y
     rectItem.attributes[2].value = '100'; // width
     rectItem.attributes[3].value = '100'; // height
-    rectItem.attributes[4].value = 'blue'; // fill
+    rectItem.attributes[4].value = 'rgba(58,185,164,1)'; // fill
 
     this.editedIems.push(rectItem);
   }

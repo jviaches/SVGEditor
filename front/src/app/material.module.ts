@@ -23,8 +23,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatChipsModule } from '@angular/material/chips';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 @NgModule({
   imports: [
@@ -53,7 +54,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatProgressSpinnerModule,
     MatChipsModule,
     MatSidenavModule,
-    MatToolbarModule
+    MatToolbarModule,
+    OverlayModule
   ],
   exports: [
     MatCardModule,
@@ -81,7 +83,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatProgressSpinnerModule,
     MatChipsModule,
     MatSidenavModule,
-    MatToolbarModule
+    MatToolbarModule,
+    OverlayModule
   ],
   providers: [
     MatDatepickerModule,

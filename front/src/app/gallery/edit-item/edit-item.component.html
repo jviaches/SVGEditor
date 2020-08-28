@@ -55,13 +55,29 @@
                     </mat-panel-title>
                 </mat-expansion-panel-header>
                 <div *ngIf="!selectedItem">
-                    <span class="label-stab">Click on shape to inspect properties</span>
+                    <span class="label-stab">Click on shape to inspect its properties</span>
                 </div>
                 <div *ngIf="selectedItem">
-                    <mat-form-field class="half-width-field" *ngFor="let attr of selectedItem.attributes">
-                        <mat-label>{{attr.key}}</mat-label>
-                        <input matInput [value]="attr.value" (input)="attr.value = $event.target.value">
-                    </mat-form-field>
+                    <div *ngFor="let attr of selectedItem.attributes">
+                        <div *ngIf="attr.key === 'Fill'" class="input-wrapper">
+                            <span class="text">{{attr.key}}</span>
+                            <div class="color-div" [ngStyle]="{'background-color': attr.value || 'white'}"
+                                (click)="toggleColorPicker($event)" type="button" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
+                            </div>
+
+                            <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger" [cdkConnectedOverlayOpen]="isOpen">
+                                <div class="example-list">
+                                    <app-color-picker id="colorPicker"></app-color-picker>
+                                </div>
+                            </ng-template>
+                        </div>
+
+                        <mat-form-field class="half-width-field" *ngIf="attr.key !== 'Fill'">
+                            <mat-label>{{attr.key}}</mat-label>
+                            <input matInput [value]="attr.value" (input)="attr.value = $event.target.value">
+                        </mat-form-field>
+                    </div>
+
                 </div>
             </mat-expansion-panel>
         </mat-accordion>
@@ -84,6 +100,8 @@
     </mat-drawer>
     <mat-drawer-content>
         <div class="main-container">
+
+
             <svg id="svg_container" #svg_container attr.height="{{svgHeight}}px" attr.width="{{svgWidth}}px"
                 style.background-color="{{svgBackgroundColor}}" (click)="svgContainerSelection($event)">
                 <g #mainArea>

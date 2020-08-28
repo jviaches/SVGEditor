@@ -6,16 +6,13 @@ import { MatButton } from '@angular/material/button';
   templateUrl: './shape-toolbar.component.html',
   styleUrls: ['./shape-toolbar.component.scss']
 })
-export class ShapeToolbarComponent implements AfterViewInit {
+export class ShapeToolbarComponent {
 
   selectedTool: string;
   @Output() selectionChange = new EventEmitter();
 
   @ViewChild('rectangleTool', { static: false }) rectangleTool: MatButton;
   @ViewChild('circleTool', { static: false }) circleTool: MatButton;
-
-  ngAfterViewInit(): void {
-  }
 
   rectangleSelected() {
     if (this.selectedTool === 'rectangle') {

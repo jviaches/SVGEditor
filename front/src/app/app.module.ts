@@ -15,6 +15,9 @@ import { ModalDialogComponent } from './core/components/modal/modal-dialog/modal
 import { ModalYesNoDialogComponent } from './core/components/modal/yesno-modal-dialog/yesno-modal-dialog.component';
 import { ResizeDirective } from './core/directives/resize.directive';
 import { ShapeToolbarComponent } from './core/components/toolbar/shape-toolbar/shape-toolbar.component';
+import { ColorSliderComponent } from './core/components/custom/color-slider/color-slider.component';
+import { ColorPickerComponent } from './core/components/custom/color-picker/color-picker.component';
+import { ColorPaletteComponent } from './core/components/custom/color-palette/color-palette.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,9 @@ import { ShapeToolbarComponent } from './core/components/toolbar/shape-toolbar/s
     DragDirective,
     ResizeDirective,
     ShapeToolbarComponent,
+    ColorSliderComponent,
+    ColorPaletteComponent,
+    ColorPickerComponent,
     ModalDialogComponent,
     ModalYesNoDialogComponent
   ],
