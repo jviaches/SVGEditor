@@ -62,10 +62,12 @@
                         <div *ngIf="attr.key === 'Fill'" class="input-wrapper">
                             <span class="text">{{attr.key}}</span>
                             <div class="color-div" [ngStyle]="{'background-color': attr.value || 'white'}"
-                                (click)="toggleColorPicker($event)" type="button" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
+                                (click)="toggleColorPicker($event)" type="button" cdkOverlayOrigin
+                                #trigger="cdkOverlayOrigin">
                             </div>
 
-                            <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger" [cdkConnectedOverlayOpen]="isOpen">
+                            <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger"
+                                [cdkConnectedOverlayOpen]="isOpen">
                                 <div class="example-list">
                                     <app-color-picker id="colorPicker"></app-color-picker>
                                 </div>
@@ -100,8 +102,6 @@
     </mat-drawer>
     <mat-drawer-content>
         <div class="main-container">
-
-
             <svg id="svg_container" #svg_container attr.height="{{svgHeight}}px" attr.width="{{svgWidth}}px"
                 style.background-color="{{svgBackgroundColor}}" (click)="svgContainerSelection($event)">
                 <g #mainArea>
@@ -120,6 +120,22 @@
                         <g *ngIf="svgService.isPath(item)">
                             <path appDrag [attr.d]="item.attributes[0].value" (click)="shapeSelection(item)" />
                         </g>
+                        <!-- <g *ngIf="svgService.isText(item)"> -->
+                        <foreignObject appDrag *ngIf="svgService.isText(item)" [attr.id]="item.id"
+                            [attr.x]="item.attributes[0].value" [attr.y]="item.attributes[1].value" width="340"
+                            height="100">
+                            <xhtml:div>{{item.attributes[3].value}}</xhtml:div>
+                        </foreignObject>
+
+                        <!-- <text appDrag [attr.d]="item.id"
+                            [attr.x]="item.attributes[0].value"
+                            [attr.y]="item.attributes[1].value"
+                            lengthAdjust="spacing"
+                            width="200" height="300"
+                            (click)="shapeSelection(item)">
+                            <tspan>{{item.attributes[3].value}}</tspan>
+                        </text> -->
+                        <!-- </g> -->
                     </ng-container>
                 </g>
             </svg>

@@ -3,6 +3,7 @@ import { SVGItem } from '../models/svg.item';
 import { RectItem } from '../models/rectangle.item.model';
 import { CircleItem } from '../models/circle.item.model';
 import { PathItem } from '../models/path.item.model';
+import { TextItem } from '../models/text.item';
 
 @Injectable({
   providedIn: 'root'
@@ -27,29 +28,77 @@ export class SvgService {
     return item instanceof CircleItem;
   }
 
+  
+  isText(item: SVGItem) {
+    return item instanceof TextItem;
+  }
+
   generatedId(){
     return ++this.lastGeneratedElementId;
   }
 
   createTestImages() {
-    const rectItem = new RectItem();
-    rectItem.id = this.generatedId().toString();
-    rectItem.attributes[0].value = '10';  // x
-    rectItem.attributes[1].value = '20';  // y
-    rectItem.attributes[2].value = '500'; // width
-    rectItem.attributes[3].value = '400'; // height
-    rectItem.attributes[4].value = 'green'; // fill
+    const baseCardItem = new RectItem();
+    baseCardItem.id = this.generatedId().toString();
+    baseCardItem.attributes[0].value = '10';  // x
+    baseCardItem.attributes[1].value = '20';  // y
+    baseCardItem.attributes[2].value = '600'; // width
+    baseCardItem.attributes[3].value = '300'; // height
+    baseCardItem.attributes[4].value = 'gray'; // fill
 
-    this.editedIems.push(rectItem);
+    this.editedIems.push(baseCardItem);
+
+    const leftBarItemItem = new RectItem();
+    leftBarItemItem.id = this.generatedId().toString();
+    leftBarItemItem.attributes[0].value = '10';  // x
+    leftBarItemItem.attributes[1].value = '20';  // y
+    leftBarItemItem.attributes[2].value = '160'; // width
+    leftBarItemItem.attributes[3].value = '300'; // height
+    leftBarItemItem.attributes[4].value = 'white'; // fill
+
+    this.editedIems.push(leftBarItemItem);
 
     const circleItem = new CircleItem();
     circleItem.id = this.generatedId().toString();
-    circleItem.attributes[0].value = '200'; // cx
-    circleItem.attributes[1].value = '400'; // cy
-    circleItem.attributes[2].value = '25'; // r
+    circleItem.attributes[0].value = '170'; // cx
+    circleItem.attributes[1].value = '150'; // cy
+    circleItem.attributes[2].value = '60'; // r
     circleItem.attributes[3].value = 'yellow'; // fill
 
     this.editedIems.push(circleItem);
+
+    const mainTextItem = new TextItem();
+    mainTextItem.id = this.generatedId().toString();
+    mainTextItem.attributes[0].value = '260'; // x
+    mainTextItem.attributes[1].value = '50'; // y
+    mainTextItem.attributes[2].value = 'small'; // class
+    mainTextItem.attributes[3].value = 'Lorem ipsum dolorem faksdfzk jsdhfgamjks dfga kisdf ga slkjdfgh SMJDhf gSMJdfgj sdfg f Sdjgfjsdfgjsdfgk fjasdgfka ds fajsdgf aksdgf akdsf kasdgf kajs'; // class
+    mainTextItem.attributes[4].value = "100";
+
+    this.editedIems.push(mainTextItem);
+
+    const nameTextItem = new TextItem();
+    nameTextItem.id = this.generatedId().toString();
+    nameTextItem.attributes[0].value = '260'; // x
+    nameTextItem.attributes[1].value = '150'; // y
+    nameTextItem.attributes[2].value = 'small'; // class
+    nameTextItem.attributes[3].value = 'First Last name'; // text
+    nameTextItem.attributes[4].value = "20";
+
+    this.editedIems.push(nameTextItem);
+
+    const positionTextItem = new TextItem();
+    positionTextItem.id = this.generatedId().toString();
+    positionTextItem.attributes[0].value = '260'; // x
+    positionTextItem.attributes[1].value = '180'; // y
+    positionTextItem.attributes[2].value = 'small'; // class
+    positionTextItem.attributes[3].value = 'Company position'; // text
+    positionTextItem.attributes[4].value = "20";
+
+    this.editedIems.push(positionTextItem);
+
+    // <text x="20" y="35" class="small">My</text>
+
 
     // const pathItem = new PathItem();
     // pathItem.id = '3';
@@ -74,6 +123,21 @@ export class SvgService {
     this.editedIems.push(rectItem);
   }
 
+  createText(x: number, y: number) {
+    const radius = 25;
+    const xCoord = x - (radius / 2);
+    const yCoord = y - (radius / 2);
+
+    const textItem = new TextItem();
+    textItem.id = this.generatedId().toString();
+    textItem.attributes[0].value = xCoord.toString();  // x
+    textItem.attributes[1].value = yCoord.toString();  // y
+    textItem.attributes[2].value = 'small'; // class
+    textItem.attributes[3].value = 'Lorem ipsum dolorem'; // class
+
+    this.editedIems.push(textItem);
+  }
+    
   createCircle(x: number, y: number) {
     const radius = 25;
     const xCoord = x - (radius / 2);
@@ -87,7 +151,6 @@ export class SvgService {
     circleItem.attributes[3].value = 'yellow'; // fill
 
     this.editedIems.push(circleItem);
-
   }
 
   convertImagetoSVG(svg: any) {

@@ -7,6 +7,7 @@ import { SVGItem } from '../models/svg.item';
 })
 export class DragDirective {
 
+  private cornerExpanderDelta = 5;
   private draggingElement: SVGElement;
   private svgContainer: any;
 
@@ -24,6 +25,7 @@ export class DragDirective {
 
   @HostListener('mouseenter', ['$event'])
   onMouseEnter(event): void {
+    console.log(event);
     this.addSelection(event);
   }
 
@@ -36,7 +38,7 @@ export class DragDirective {
       this.prevMouseScreenY = event.screenY;
 
       const shape: SVGItem = this.svgService.editedIems.find(item => item.id === this.draggingElement.id);
-      if (this.svgService.isRectangle(shape) || this.svgService.isCircle(shape)) {
+      if (this.svgService.isRectangle(shape) || this.svgService.isCircle(shape) || this.svgService.isText(shape)) {
         this.setPosition(this.draggingElement,
           {
             x: Number(shape.attributes[0].value) + deltaX,
@@ -84,6 +86,22 @@ export class DragDirective {
       shape.attributes[0].value = coord.x;
       shape.attributes[1].value = coord.y;
     }
+    else if (this.svgService.isText(shape)) {
+      element.setAttribute('x', coord.x);
+      element.setAttribute('y', coord.y);
+
+      shape.attributes[0].value = coord.x;
+      shape.attributes[1].value = coord.y;
+    // } else if(element.innerHTML.startsWith("<div>"))
+    // {
+    //   element.setAttribute('x', coord.x);
+    //   element.setAttribute('y', coord.y);
+
+    //   shape.attributes[0].value = coord.x;
+    //   shape.attributes[1].value = coord.y;
+    } 
+   
+    
   }
 
   private addSelection(event) {
@@ -91,32 +109,32 @@ export class DragDirective {
     const bbox = event.target.getBBox();
 
     this.bounderElementLeftTop = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    this.bounderElementLeftTop.setAttribute('cx', bbox.x);
-    this.bounderElementLeftTop.setAttribute('cy', bbox.y);
+    this.bounderElementLeftTop.setAttribute('cx', bbox.x - this.cornerExpanderDelta);
+    this.bounderElementLeftTop.setAttribute('cy', bbox.y - this.cornerExpanderDelta);
     this.bounderElementLeftTop.setAttribute('r', '5');
     this.bounderElementLeftTop.setAttribute('fill', 'blue');
 
     this.svgContainer.appendChild(this.bounderElementLeftTop);
 
     this.bounderElementRighTop = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    this.bounderElementRighTop.setAttribute('cx', bbox.width + bbox.x);
-    this.bounderElementRighTop.setAttribute('cy', bbox.y);
+    this.bounderElementRighTop.setAttribute('cx', bbox.width + bbox.x + this.cornerExpanderDelta);
+    this.bounderElementRighTop.setAttribute('cy', bbox.y - this.cornerExpanderDelta);
     this.bounderElementRighTop.setAttribute('r', '5');
     this.bounderElementRighTop.setAttribute('fill', 'red');
 
     this.svgContainer.appendChild(this.bounderElementRighTop);
 
     this.bounderElementLeftBottom = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    this.bounderElementLeftBottom.setAttribute('cx', bbox.x);
-    this.bounderElementLeftBottom.setAttribute('cy', bbox.y + bbox.height);
+    this.bounderElementLeftBottom.setAttribute('cx', bbox.x - this.cornerExpanderDelta);
+    this.bounderElementLeftBottom.setAttribute('cy', bbox.y + bbox.height + this.cornerExpanderDelta);
     this.bounderElementLeftBottom.setAttribute('r', '5');
     this.bounderElementLeftBottom.setAttribute('fill', 'yellow');
 
     this.svgContainer.appendChild(this.bounderElementLeftBottom);
 
     this.bounderElementRighBottom = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    this.bounderElementRighBottom.setAttribute('cx', bbox.x + bbox.width);
-    this.bounderElementRighBottom.setAttribute('cy', bbox.y + bbox.height);
+    this.bounderElementRighBottom.setAttribute('cx', bbox.x + bbox.width + this.cornerExpanderDelta);
+    this.bounderElementRighBottom.setAttribute('cy', bbox.y + bbox.height + this.cornerExpanderDelta);
     this.bounderElementRighBottom.setAttribute('r', '5');
     this.bounderElementRighBottom.setAttribute('fill', 'green');
 

@@ -12,7 +12,6 @@ import { ColorPickerComponent } from 'src/app/core/components/custom/color-picke
 })
 export class EditItemComponent implements AfterViewInit {
 
-
   isOpen = false;
 
   selectedItem: SVGItem;
@@ -46,6 +45,9 @@ export class EditItemComponent implements AfterViewInit {
       this.shapeToolbar.resetSelection();
     } else if (this.shapeToolbar.selectedTool === 'circle') {
       this.svgService.createCircle(event.offsetX, event.offsetY);
+      this.shapeToolbar.resetSelection();
+    } else if (this.shapeToolbar.selectedTool === 'text') {
+      this.svgService.createText(event.offsetX, event.offsetY);
       this.shapeToolbar.resetSelection();
     }
   }
