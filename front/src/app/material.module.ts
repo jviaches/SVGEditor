@@ -26,6 +26,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { OverlayModule } from '@angular/cdk/overlay';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   imports: [
@@ -55,7 +56,8 @@ import { OverlayModule } from '@angular/cdk/overlay';
     MatChipsModule,
     MatSidenavModule,
     MatToolbarModule,
-    OverlayModule
+    OverlayModule,
+    MatListModule
   ],
   exports: [
     MatCardModule,
@@ -84,7 +86,8 @@ import { OverlayModule } from '@angular/cdk/overlay';
     MatChipsModule,
     MatSidenavModule,
     MatToolbarModule,
-    OverlayModule
+    OverlayModule,
+    MatListModule
   ],
   providers: [
     MatDatepickerModule,

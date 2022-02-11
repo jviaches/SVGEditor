@@ -4,6 +4,8 @@ import { RectItem } from '../models/rectangle.item.model';
 import { CircleItem } from '../models/circle.item.model';
 import { PathItem } from '../models/path.item.model';
 import { TextItem } from '../models/text.item';
+import { HttpClient } from '@angular/common/http';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,7 @@ export class SvgService {
   editedIems: SVGItem[] = [];
   private lastGeneratedElementId = 0;
 
-  constructor() {
+  constructor(private sanitizer: DomSanitizer, private http: HttpClient) {
   }
 
   isRectangle(item: SVGItem) {
@@ -36,6 +38,16 @@ export class SvgService {
   generatedId(){
     return ++this.lastGeneratedElementId;
   }
+
+  parseGalleryItem() {
+    this.http.get('assets/gallery/user-responses/aaa.svg', { responseType: 'text' })
+    .subscribe(logo => {
+      var svgImageitem = this.sanitizer.bypassSecurityTrustHtml(logo);
+      var a: SVGElement = svgImageitem as SVGElement;
+      console.log(a);
+    });
+}
+  
 
   createTestImages() {
     const baseCardItem = new RectItem();

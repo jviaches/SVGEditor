@@ -16,7 +16,7 @@ export class ColorPickerComponent implements AfterViewInit, OnChanges{
 
   ngAfterViewInit(): void {
     this.colorPalette.color.subscribe( data => {
-      console.log(data);
+      //console.log(data);
       this.color = data;
       this.colorChange.emit('color');
     });
@@ -24,7 +24,7 @@ export class ColorPickerComponent implements AfterViewInit, OnChanges{
 
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
+    //console.log(changes);
 
     // if (changes.hue) {
     //   this.draw();

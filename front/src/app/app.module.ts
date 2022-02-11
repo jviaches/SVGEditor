@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -36,11 +37,12 @@ import { ColorPaletteComponent } from './core/components/custom/color-palette/co
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule
   ],
-  providers: [SvgService, GeneralService],
+  providers: [SvgService, GeneralService, HttpClientModule],
   bootstrap: [AppComponent],
   entryComponents: [ModalDialogComponent, ModalYesNoDialogComponent]
 })

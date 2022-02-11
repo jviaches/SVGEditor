@@ -8,7 +8,57 @@
 </mat-toolbar>
 
 <mat-drawer-container class="example-container">
-    <mat-drawer mode="side" class="left-side" opened>
+    <mat-drawer mode="side" opened mat-drawer position="start">
+        <mat-accordion>
+            <mat-list role="list">
+                <mat-list-item role="listitem"><img src="../../../assets/gallery/user-responses/aaa.svg" width="100%" height="100%" (click)="galleryItemSelection()" /></mat-list-item>
+                <mat-list-item role="listitem">Item 2</mat-list-item>
+                <mat-list-item role="listitem">Item 3</mat-list-item>
+              </mat-list>
+        </mat-accordion>
+    </mat-drawer>
+    <mat-drawer-content>
+        <div class="main-container">
+            <svg id="svg_container" #svg_container attr.height="{{svgHeight}}px" attr.width="{{svgWidth}}px"
+                style.background-color="{{svgBackgroundColor}}" (click)="svgContainerSelection($event)">
+                <g #mainArea>
+                    <ng-container *ngFor="let item of svgService.editedIems">
+                        <g *ngIf="svgService.isRectangle(item)">
+                            <rect appDrag [attr.id]="item.id" [attr.x]="item.attributes[0].value"
+                                [attr.y]="item.attributes[1].value" [attr.width]="item.attributes[2].value"
+                                [attr.height]="item.attributes[3].value" [attr.fill]="item.attributes[4].value"
+                                (click)="shapeSelection(item)" />
+                        </g>
+                        <g *ngIf="svgService.isCircle(item)">
+                            <circle appDrag [attr.id]="item.id" [attr.cx]="item.attributes[0].value"
+                                [attr.cy]="item.attributes[1].value" [attr.r]="item.attributes[2].value"
+                                [attr.fill]="item.attributes[3].value" (click)="shapeSelection(item)" />
+                        </g>
+                        <g *ngIf="svgService.isPath(item)">
+                            <path appDrag [attr.d]="item.attributes[0].value" (click)="shapeSelection(item)" />
+                        </g>
+                        <!-- <g *ngIf="svgService.isText(item)"> -->
+                        <foreignObject appDrag *ngIf="svgService.isText(item)" [attr.id]="item.id"
+                            [attr.x]="item.attributes[0].value" [attr.y]="item.attributes[1].value" width="340"
+                            height="100">
+                            <xhtml:div>{{item.attributes[3].value}}</xhtml:div>
+                        </foreignObject>
+
+                        <!-- <text appDrag [attr.d]="item.id"
+                            [attr.x]="item.attributes[0].value"
+                            [attr.y]="item.attributes[1].value"
+                            lengthAdjust="spacing"
+                            width="200" height="300"
+                            (click)="shapeSelection(item)">
+                            <tspan>{{item.attributes[3].value}}</tspan>
+                        </text> -->
+                        <!-- </g> -->
+                    </ng-container>
+                </g>
+            </svg>
+        </div>
+    </mat-drawer-content>
+    <mat-drawer mode="side" opened mat-drawer position="end">
         <mat-accordion>
             <mat-expansion-panel expanded="true" class="expansion-tab">
                 <mat-expansion-panel-header>
@@ -99,46 +149,5 @@
                 </div>
             </mat-expansion-panel>
         </mat-accordion>
-    </mat-drawer>
-    <mat-drawer-content>
-        <div class="main-container">
-            <svg id="svg_container" #svg_container attr.height="{{svgHeight}}px" attr.width="{{svgWidth}}px"
-                style.background-color="{{svgBackgroundColor}}" (click)="svgContainerSelection($event)">
-                <g #mainArea>
-                    <ng-container *ngFor="let item of svgService.editedIems">
-                        <g *ngIf="svgService.isRectangle(item)">
-                            <rect appDrag [attr.id]="item.id" [attr.x]="item.attributes[0].value"
-                                [attr.y]="item.attributes[1].value" [attr.width]="item.attributes[2].value"
-                                [attr.height]="item.attributes[3].value" [attr.fill]="item.attributes[4].value"
-                                (click)="shapeSelection(item)" />
-                        </g>
-                        <g *ngIf="svgService.isCircle(item)">
-                            <circle appDrag [attr.id]="item.id" [attr.cx]="item.attributes[0].value"
-                                [attr.cy]="item.attributes[1].value" [attr.r]="item.attributes[2].value"
-                                [attr.fill]="item.attributes[3].value" (click)="shapeSelection(item)" />
-                        </g>
-                        <g *ngIf="svgService.isPath(item)">
-                            <path appDrag [attr.d]="item.attributes[0].value" (click)="shapeSelection(item)" />
-                        </g>
-                        <!-- <g *ngIf="svgService.isText(item)"> -->
-                        <foreignObject appDrag *ngIf="svgService.isText(item)" [attr.id]="item.id"
-                            [attr.x]="item.attributes[0].value" [attr.y]="item.attributes[1].value" width="340"
-                            height="100">
-                            <xhtml:div>{{item.attributes[3].value}}</xhtml:div>
-                        </foreignObject>
-
-                        <!-- <text appDrag [attr.d]="item.id"
-                            [attr.x]="item.attributes[0].value"
-                            [attr.y]="item.attributes[1].value"
-                            lengthAdjust="spacing"
-                            width="200" height="300"
-                            (click)="shapeSelection(item)">
-                            <tspan>{{item.attributes[3].value}}</tspan>
-                        </text> -->
-                        <!-- </g> -->
-                    </ng-container>
-                </g>
-            </svg>
-        </div>
-    </mat-drawer-content>
+    </mat-drawer>    
 </mat-drawer-container>

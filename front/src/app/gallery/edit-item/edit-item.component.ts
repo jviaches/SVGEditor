@@ -26,17 +26,22 @@ export class EditItemComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.shapeToolbar.selectionChange.subscribe(data => {
-      console.log(data);
+      //console.log(data);
     });
 
-    console.log(this.colorPicker);
+    //console.log(this.colorPicker);
 
     // this.colorPicker.colorChange.subscribe(data => {
     //   const a = Object.keys(this.selectedItem.attributes).find(key => this.selectedItem[key] === data);
     //   console.log(a);
     // });
 
-    this.svgService.createTestImages();
+    //this.svgService.createTestImages();
+  }
+
+  galleryItemSelection() {
+    this.svgService.parseGalleryItem();
+    
   }
 
   svgContainerSelection(event: MouseEvent) {
@@ -66,7 +71,7 @@ export class EditItemComponent implements AfterViewInit {
 
     setTimeout(() => {
       const element = document.getElementById('colorPicker') as any;
-      console.log(element);
+      //console.log(element);
     }, 500);
   }
 
