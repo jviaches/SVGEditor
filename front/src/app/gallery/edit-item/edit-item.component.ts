@@ -41,7 +41,7 @@ export class EditItemComponent implements AfterViewInit {
 
   galleryItemSelection() {
     this.svgService.parseGalleryItem();
-    
+
   }
 
   svgContainerSelection(event: MouseEvent) {
@@ -53,6 +53,9 @@ export class EditItemComponent implements AfterViewInit {
       this.shapeToolbar.resetSelection();
     } else if (this.shapeToolbar.selectedTool === 'text') {
       this.svgService.createText(event.offsetX, event.offsetY);
+      this.shapeToolbar.resetSelection();
+    } else if (this.shapeToolbar.selectedTool === 'line') {
+      this.svgService.createLine(event.offsetX, event.offsetY, event.offsetX + 100, event.offsetY + 100); // test
       this.shapeToolbar.resetSelection();
     }
   }

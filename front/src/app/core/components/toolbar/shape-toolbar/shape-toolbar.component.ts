@@ -13,6 +13,7 @@ export class ShapeToolbarComponent {
 
   @ViewChild('rectangleTool', { static: false }) rectangleTool: MatButton;
   @ViewChild('circleTool', { static: false }) circleTool: MatButton;
+  @ViewChild('lineTool', { static: false }) lineTool: MatButton;
 
   rectangleSelected() {
     if (this.selectedTool === 'rectangle') {
@@ -36,10 +37,22 @@ export class ShapeToolbarComponent {
     this.selectionChange.emit('circle');
   }
 
+  lineSelected() {
+    if (this.selectedTool === 'line') {
+      this.resetSelection();
+      return;
+    }
+
+    this.selectedTool = 'line';
+    this.lineTool.color = 'primary';
+    this.selectionChange.emit('line');
+  }
+
   resetSelection() {
     this.selectedTool = null;
     this.rectangleTool.color = undefined;
     this.circleTool.color = undefined;
+    this.lineTool.color = undefined;
     this.selectionChange.emit(undefined);
   }
 }

@@ -6,6 +6,7 @@ import { PathItem } from '../models/path.item.model';
 import { TextItem } from '../models/text.item';
 import { HttpClient } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
+import { LineItem } from '../models/line.item.model';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +35,11 @@ export class SvgService {
   isText(item: SVGItem) {
     return item instanceof TextItem;
   }
+
+  isLine(item: SVGItem) {
+    return item instanceof LineItem;
+  }
+
 
   generatedId(){
     return ++this.lastGeneratedElementId;
@@ -163,6 +169,20 @@ export class SvgService {
     circleItem.attributes[3].value = 'yellow'; // fill
 
     this.editedIems.push(circleItem);
+  }
+
+  createLine(x1: number, y1: number, x2: number, y2: number) {
+    const lineItem = new LineItem();
+    lineItem.id = this.generatedId().toString();
+    lineItem.attributes[0].value = x1.toString(); // x1
+    lineItem.attributes[1].value = y1.toString(); // y1
+    lineItem.attributes[2].value = x2.toString(); // x2
+    lineItem.attributes[3].value = y2.toString(); // y2
+    lineItem.attributes[4].value = "blue"; // stroke
+
+    this.editedIems.push(lineItem);
+    console.log(lineItem);
+    
   }
 
   convertImagetoSVG(svg: any) {

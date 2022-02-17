@@ -25,7 +25,6 @@ export class DragDirective {
 
   @HostListener('mouseenter', ['$event'])
   onMouseEnter(event): void {
-    //console.log(event);
     this.addSelection(event);
   }
 
@@ -43,6 +42,17 @@ export class DragDirective {
           {
             x: Number(shape.attributes[0].value) + deltaX,
             y: Number(shape.attributes[1].value) + deltaY
+          });
+      }
+
+      else if (this.svgService.isLine(shape)) {
+        this.setLinePosition(this.draggingElement,
+          {
+            x1: Number(shape.attributes[0].value) + deltaX,
+            y1: Number(shape.attributes[1].value) + deltaY,
+            x2: Number(shape.attributes[2].value) + deltaX,
+            y2: Number(shape.attributes[3].value) + deltaY,
+
           });
       }
     }
@@ -99,9 +109,24 @@ export class DragDirective {
 
     //   shape.attributes[0].value = coord.x;
     //   shape.attributes[1].value = coord.y;
-    } 
-   
-    
+    }     
+  }
+
+  private setLinePosition(element: SVGElement, coord: { x1, y1, x2, y2 }) {
+    const shape: SVGItem = this.svgService.editedIems.find(item => item.id === element.id);
+
+    if (this.svgService.isLine(shape)) {
+      element.setAttribute('x1', coord.x1);
+      element.setAttribute('y1', coord.y1);
+      element.setAttribute('x2', coord.x2);
+      element.setAttribute('y2', coord.y2);
+
+
+      shape.attributes[0].value = coord.x1;
+      shape.attributes[1].value = coord.y1;
+      shape.attributes[2].value = coord.x2;
+      shape.attributes[3].value = coord.y2;
+    }
   }
 
   private addSelection(event) {

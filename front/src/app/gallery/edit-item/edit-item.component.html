@@ -37,13 +37,21 @@
                         <g *ngIf="svgService.isPath(item)">
                             <path appDrag [attr.d]="item.attributes[0].value" (click)="shapeSelection(item)" />
                         </g>
+
+                        <g *ngIf="svgService.isLine(item)">
+                            <line appDrag [attr.id]="item.id" [attr.x1]="item.attributes[0].value"
+                                [attr.y1]="item.attributes[1].value" [attr.x2]="item.attributes[2].value"
+                                [attr.y2]="item.attributes[3].value" [attr.stroke]="item.attributes[4].value"
+                                (click)="shapeSelection(item)" />
+                        </g>
+
                         <!-- <g *ngIf="svgService.isText(item)"> -->
                         <foreignObject appDrag *ngIf="svgService.isText(item)" [attr.id]="item.id"
                             [attr.x]="item.attributes[0].value" [attr.y]="item.attributes[1].value" width="340"
                             height="100">
                             <xhtml:div>{{item.attributes[3].value}}</xhtml:div>
                         </foreignObject>
-
+                        
                         <!-- <text appDrag [attr.d]="item.id"
                             [attr.x]="item.attributes[0].value"
                             [attr.y]="item.attributes[1].value"
@@ -53,7 +61,10 @@
                             <tspan>{{item.attributes[3].value}}</tspan>
                         </text> -->
                         <!-- </g> -->
+
+                        
                     </ng-container>
+                    <!-- <line x1="0" y1="80" x2="100" y2="20" stroke="black" /> -->
                 </g>
             </svg>
         </div>
