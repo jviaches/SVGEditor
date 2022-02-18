@@ -48,7 +48,7 @@
                         <!-- <g *ngIf="svgService.isText(item)"> -->
                         <foreignObject appDrag *ngIf="svgService.isText(item)" [attr.id]="item.id"
                             [attr.x]="item.attributes[0].value" [attr.y]="item.attributes[1].value" width="340"
-                            height="100">
+                            height="100" (click)="shapeSelection(item)">
                             <xhtml:div>{{item.attributes[3].value}}</xhtml:div>
                         </foreignObject>
                         
